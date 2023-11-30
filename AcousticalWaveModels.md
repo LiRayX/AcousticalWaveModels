@@ -301,138 +301,154 @@ After these brief notes on the EWM application the layout of the numerical code 
 
 ***As shown by Kausel [Compendium of Fundamental Solutions in Elastodynamics, Cambridge University Press, in print],***
 
-+ 给定轴向波数$k_z$和频率$w$,单个圆柱层内部某点位移矢量的弹性波方程的特定解具有以下形式:
++ 给定轴向波数$k_z$和频率$w$,单个圆柱层内部某点位移矢量的特定解具有以下形式
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120111706259.png" alt="image-20231120111706259" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130215704730.png" alt="image-20231130215704730" style="zoom:80%;" />
 
-![image-20231120111730383](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120111730383.png)
+![image-20231130215733461](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130215733461.png)
 
-​	$\overline{u}$表示频率-波数域的解,$\widetilde{u}$意味着$z,\theta$的变化已经分离.
 
-​	其中$c_1,c_2$是任意常数,$T_n,J,Y$如以下的Table 2所示:
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120111911855.png" alt="image-20231120111911855" style="zoom:80%;" />
 
 + 圆柱表面上的应力
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120112325763.png" alt="image-20231120112325763" style="zoom:80%;" />
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120112334964.png" alt="image-20231120112334964" style="zoom:80%;" />
-
-​	$F^{(1)},F^{(2)}$见Table 3, 它们分别由第一第二类Bessel函数构造
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120112615390.png" alt="image-20231120112615390" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130215851228.png" alt="image-20231130215851228" style="zoom:80%;" />
 
 ##### (2)Layered Models
 
 ###### a. Single layer
 
-最外层是孤立的自由层,单层外半径和内半径分别为$r_1,r_2$,评估这两个表面上的位移和应力，将每弧度的牵引力定义为应力和界面半径的乘积,并将两者写成矩阵形式,得到：
+最外层是孤立的自由层,单层外半径和内半径分别为$r_1,r_2$,分别计算这两个表面上的位移和应力,得到：
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120114002490.png" alt="image-20231120114002490" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130215924236.png" alt="image-20231130215924236" style="zoom:80%;" />
 
 其中下标表示计算矩阵的位置,上标表示使用的Bessel函数的类型.
 
-+ 消去$c_1,c_2$
++ 消去$a_1,a_2$
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120114110787.png" alt="image-20231120114110787" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130220116440.png" alt="image-20231130220116440" style="zoom:80%;" />
 
-​	以下$K$称作对称刚度(阻抗)矩阵symmetric stiffness (or impedance) matrix of the cylindrical layer.
+​	$K$称作刚度矩阵:
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120114136948.png" alt="image-20231120114136948" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130220139152.png" alt="image-20231130220139152" style="zoom:80%;" />
 
 ###### b. Unbounded external region
 
-对于无界均匀空间内的圆柱形空腔,外部区域可以被视为外半径无限大的层.在这种情况下,$c_2$ 必须设置为零（以满足无穷远的辐射和有界条件,并在矩阵中使用第二汉克尔函数而不是贝塞尔函数.因此,外部区域的 $3\times3$ impedance matrix:
+对于无界均匀空间内的圆柱形空腔,外部区域可以被视为外半径无限大的层.在这种情况下,$a_2$ 必定为零.因此,外部区域的 $3\times3$ 刚度矩阵:
 $$
-K_{ext} = -rFH^{-1}
+K_{ext} = -rF_n^{(2)}(H_n^{(2)})^{-1}
 $$
-$H,F$分别参考Table2,3两者都必须使用在外部区域半径 $r$ 处计算的第二汉克尔函数来构建.
-
 ###### c. Layered system
 
 从外部区域的刚度矩阵开始,为每一层创建层矩阵,得到以下的分块三对角阵:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120114346713.png" alt="image-20231120114346713" style="zoom:80%;" /> 
 
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130220457504.png" alt="image-20231130220457504" style="zoom:80%;" />
+
+
+
+###### d. Solid core
+
+$$
+K_{core} = rF_nH_n^{-1}
+$$
+
+以上的刚度矩阵,利用$J_n$计算
+
 ##### (3)Fluid-pipes-soil model
 
-在这部分,将一步步优化我们的模型:
+###### a. step 1
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120114709704.png" alt="image-20231120114709704" style="zoom: 50%;" />
+波源在layered medium中引起$r_N$处的位移和内部压力分别为$u_N,s_n$
 
-+ 对于以上的系统,我们有:
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120114727620.png" alt="image-20231120114727620" style="zoom:80%;" />
-
-+ +  $p_1$作用在流固界面上的径向压力
-  + $p_2$:作用于任何其他自由度的压力
-  + $u_1$:流固界面的径向位移
-  + $u_2$:所有其他自由度的位移
-  + $K_{ii}$:the sub-matrices of the total stiffness matrix connecting the pressures of the fluid-solid interface and all the remaining degrees of freedom to their respective displacements
-  + $K_{ij}$:the sub-matrices of the total stiffness matrix expressing the pressures of the fluid-solid interface and all the remaining degrees of freedom to their unrelated displacements
-
-系统的刚度矩阵用来求解$p_1$,
-
-+ 无限流体介质将分为两部分:一层流体核心和一层无限延伸流体.它们的分离界面的半径等于管道的内半径,如下图所示：
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120115413464.png" alt="image-20231120115413464" style="zoom:50%;" />
+波源在同质的无限介质中引起$r_N$处的位移和内部压力分别为$u^*,s^*$
 $$
-p^* = -K_{fe}u_r^*
+r_N(s_N-s^*) = K_{core}(u_N - u ^*),\text{with} \: K_{core} = r_NF_N(H_N)^{-1}
 $$
-
-+ + $p^*$:作用在界面上的压力（由于流体核心中的来源）
-  + $u_r^*$:界面向外位移
-  + $K_{fe}$:流体外层的刚度矩阵
-
-+ 在实际的圆柱形布局中，外层不是无限的流体，而是复杂的圆柱形分层系统.假设流体层中的源在核心流体与外部系统之间的界面上引起的应力等于$\sigma_{1r}$
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120120020110.png" alt="image-20231120120020110" style="zoom:80%;" />
-
-+ 考虑到内部流体的刚度没有改变,无限流体和完整系统模型之间的位移差异仅是由于施加压力的差异造成的.无限流体和完整系统模型中的位移和应力之间的关系将是（如图所示）：
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120120114672.png" alt="image-20231120120114672" style="zoom:50%;" />
-
-
+此外,由于外部区域没有源,因此齐次参考问题的应力满足平衡条件
 $$
-\begin{aligned}
-\Delta p &=K_{fi}\Delta u \Leftrightarrow \\
-p^{*}-(-\sigma_{1r}) &= K_{fi}(u_r^*-u_{1r})\Leftrightarrow\\
-\sigma_{1r} &= -r^*+K_{fi}u_r^*-K_{fi}u_{rl}\\
-\sigma_{1r} &=(K_{fe}+K{fi})u_r^*-K_{fi}u_{r1}
-\end{aligned}
+-r_Ns^* = K_{ext}u^*\quad K_{ext} = -r_N F_N^{(2)}(H_N^{(2)})^{-1}
+$$
+化简得到:
+$$
+-r_N s_N = - K_{core}u_N + K_{full}^*u^* \quad K_{full}^* = K_{core} + K_{ext}^*
+$$
+写成矩阵的形式:
+$$
+\begin{pmatrix}
+K_{11} & K_{12} & 0 & \cdots & 0 \\
+K_{21} & K_{22} & K_{23} & \cdots & 0 \\
+0 & K_{32} & K_{33} & \ddots & \vdots \\
+\vdots & \vdots & \ddots & \ddots & K_{N-1,N} \\
+0 & 0 & \cdots & K_{N,N-1} & K_{NN} + K_{core} \\
+\end{pmatrix}
+\begin{pmatrix}
+u_1\\
+u_2\\
+u_3\\
+\vdots\\
+u_N
+\end{pmatrix}
+= 
+\begin{pmatrix}
+0\\
+0\\
+0\\
+\vdots\\
+K_{full}^* u^*
+\end{pmatrix}
 $$
 
 
-+ 如果系统上没有施加其他应力，则完整模型的方程现在可以写成矩阵形式：
+现在,只需要求出$u^*$即可
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120120156774.png" alt="image-20231120120156774" style="zoom:80%;" />
+###### b. step 2
 
-+ 上述刚度矩阵是包含流体的系统的刚度矩阵,它是通过将各个自由度连接在一起来计算的.这组方程可以求解界面的径向位移为：
+柱坐标系下的[Green's functions](https://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B8)
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120121005565.png" alt="image-20231120121005565" style="zoom:80%;" />
+Let $g_j (r, r') = g_j (r, r', t)$ or $g_j (r, r') = g_j (r, r', w)$ be the Green’s function for a receiver placed at location $r$ due to an impulsive or harmonic source, a point load $P = 1$ acting at location $r'$ in some principal direction $j$.
 
-​	其中,$K_{cons}$为是系统沿自由度的合并矩阵
++  When the Green’s functions for a point load acting on the cylindrical axis (i.e.,$ r' = 0$) at depth $z'$ are expressed in cylindrical coordinates, they have the general form
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120121055688.png" alt="image-20231120121055688" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223608507.png" alt="image-20231130223608507" style="zoom:80%;" />
 
-+ 则界面上的压力将为：
+其中,$g_{ij}$表示$j$方向的单位载荷对于$i$方向的影响.
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120121108469.png" alt="image-20231120121108469" style="zoom:80%;" />
+如果求和$\bold{g_{j}} = g_i^je^{i}$($g_i^j = g_{ij}$)则表示$j$方向的单位载荷对于所有方向的影响,在三维空间中,$\bold{g_j}$是个三维列向量.
 
-+ 为了找到流体-固体界面处的压力,唯一缺少的一项是具有相同半径但位于无限延伸流体中的界面的位移 $u_r^*$.这可以通过求解无限延伸介质的圆柱坐标中的 Helmholtz equation 来实现, 从而我们得到:(为了方便计算,我们假设源在轴线上,这样不需要考虑方位角$\theta$)
+(通常,我们以$\bold{i},\bold{j},\bold{k}$表示Cartesian coordinates下的标准正交基,$\bold{r},\bold{t},\bold{k}$表示柱面坐标系的标准正交基)
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120121303967.png" alt="image-20231120121303967" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130225524076.png" alt="image-20231130225524076" style="zoom:80%;" />
 
-+ 此时径向位移(关于波数$k_z$,频率$w$)的函数
+$ u =\sum \bold{g_x}$
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120121339515.png" alt="image-20231120121339515" style="zoom:80%;" />
+以下为涉及到的字母的含义:
 
-+ 在半径为 $R_c$ 的人工“界面”,径向位移为:
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223705348.png" alt="image-20231130223705348" style="zoom:80%;" />
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120121544466.png" alt="image-20231120121544466" style="zoom:80%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223746248.png" alt="image-20231130223746248" style="zoom:80%;" />
 
-​		至此,我们就得到了$\sigma_{1r}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 + 我们使用以下的公式计算管波的速度:
 
