@@ -1,8 +1,14 @@
+
+
+
+
 # Acoustical Wave Models
 
 ## Ⅰ. Simplified Model and Layered Models
 
-Ref : Acoustical wave propagation in buried water filled pipes(2005).
+Ref : **Acoustical wave propagation in buried water filled pipes(2005)**. 
+
+​		 **Fundamental Solutions in Elastodynamics**
 
 ### 1.Simplified Model
 
@@ -59,23 +65,23 @@ $$
 
 利用(1)Laplacian in cyclindrical coordinates,得到:
 
-![image-20231120095943848](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120095943848.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120095943848.png" alt="image-20231120095943848" style="zoom: 67%;" />
 
 以上的PDE的解为:
 
-![image-20231118124625632](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118124625632.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118124625632.png" alt="image-20231118124625632" style="zoom:80%;" />
 
 根据物理模型的假设:***波从源向外移动，并且在靠近源的地方具有有限的强度***,解化简为:
 
-![image-20231118125759356](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118125759356.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118125759356.png" alt="image-20231118125759356" style="zoom:80%;" />
 
 根据Simplified Model中的假设,边界条件:
 
-![image-20231118125843356](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118125843356.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118125843356.png" alt="image-20231118125843356" style="zoom:80%;" />
 
 将此条件代入$\phi(r,\theta,z)$就得到:
 
-![image-20231118131140499](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118131140499.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118131140499.png" alt="image-20231118131140499" style="zoom:80%;" />
 
 ###### b. Solution of simplified model
 
@@ -83,7 +89,7 @@ $$
 
 + 以$S(r,\theta,k_z,w)$表示源的强度,并利用Fourier-Bessel级数(Fourier级数和Bessel级数的张量)展开:
 
-![image-20231118131556668](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118131556668.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118131556668.png" alt="image-20231118131556668" style="zoom:80%;" />
 
 其中,$k_{nj}:J_n'(k_{nj}R) = 0$
 
@@ -109,7 +115,7 @@ $$
 
 + 由线性无关性:
 
-![image-20231118133858347](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118133858347.png)
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118133858347.png" alt="image-20231118133858347" style="zoom: 80%;" />
 
 ​		整理后得到:
 
@@ -353,7 +359,7 @@ $$
 K_{core} = rF_nH_n^{-1}
 $$
 
-以上的刚度矩阵,利用$J_n$计算
+以上的刚度矩阵,利用$J_n$计算.
 
 ##### (3)Fluid-pipes-soil model
 
@@ -399,8 +405,9 @@ K_{full}^* u^*
 \end{pmatrix}
 $$
 
+现在,只需要求出$u^*$即可.
 
-现在,只需要求出$u^*$即可
+以上的刚度矩阵,见**Table 1 Table 2**
 
 ###### b. step 2
 
@@ -412,6 +419,8 @@ Let $g_j (r, r') = g_j (r, r', t)$ or $g_j (r, r') = g_j (r, r', w)$ be the Gree
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223608507.png" alt="image-20231130223608507" style="zoom:80%;" />
 
+以上涉及到的字母,参考**Table 3**
+
 其中,$g_{ij}$表示$j$方向的单位载荷对于$i$方向的影响.
 
 如果求和$\bold{g_{j}} = g_i^je^{i}$($g_i^j = g_{ij}$)则表示$j$方向的单位载荷对于所有方向的影响,在三维空间中,$\bold{g_j}$是个三维列向量.
@@ -422,33 +431,115 @@ Let $g_j (r, r') = g_j (r, r', t)$ or $g_j (r, r') = g_j (r, r', w)$ be the Gree
 
 $ u =\sum \bold{g_x}$
 
-以下为涉及到的字母的含义:
+###### c . Result
+
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120135142828.png" alt="image-20231120135142828" style="zoom:80%;" />
+
+
+
+#### iii. Algorithm
+
+我们根据以下参数来选择需要的模型,具体的算法步骤参考1.Simplified Model,其中的 $L$ 是所考虑的最大频率与信号“频率”(持续时间的倒数)的比率,$\xi$表示damping ratio.
+
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119163700365.png" alt="image-20231119163700365" style="zoom:80%;" />
+
+### 3. Appendix
+
+#### i. DFT&FFT
+
+***为了方便,以下所有的下标从零开始.***
+
+##### (1) 正交基
+
+对于内积空间$(\C^N,(\cdot,\cdot))$,其中内积为标准内积$(x,y) = x'\overline{y} = \sum_{j=0}^{N-1}x_j\overline{y_j}$,
+
+ $\{e_k = (e^{iwk \cdot 0},e^{iwk \cdot 1},...,e^{iwk \cdot(N-1)})\}_{k=0}^{N-1}, \;w = \frac{2\pi}{N}$构成了一组正交基:
+
+*Proof:* 记$w_1 = e^{iw} = e^{i\frac{2\pi}{N}}$为$1$的$N$次方根.
+
++ $(e_k,e_l) = \sum_{j=0}^{N-1} w_1^{kj}w_1^{-lj} = \sum_{j=0}^{N-1}w_1^{j(k-l)} $
+
++ 如果$k=l$,$(e_k,e_l) = \sum_j 1 = N$
+
++ 如果$k\neq l$,$(e_k,e_l) = \sum_{j} (w_1^{k-l})^j = 0$ 这是由$1+z+z^2+\cdots+z^{N-1} = \frac{Z^N-1}{z-1}$,令$z = w_1^{k-l}$得到.
+
+##### (2) DFT
+
+从而对于一个向量$x = (x_0,x_1,...,x_{N-1})' = \sum_k c_k e_k$, 此时$c_j$即为Fourier系数
+
++ $X[k] = c_k = \frac{(x,e_k)}{(e_k,e_k)} = \frac1N\sum_j x_j e^{-iwk\cdot j}$
+
+如果写成矩阵的形式:($w_{N-1} = \overline{w}_1 = e^{iw(N-1)} $)
+$$
+F  = 
+\begin{pmatrix}
+1 & 1 & 1 & \cdots &1 \\
+1 & w_{N-1}^1 &w_{N-1}^2 &\cdots &w_{N-1}^{N-1} \\
+\vdots & \vdots &\vdots &\ddots &\vdots \\
+1 &w_{N-1}^{N-1} &w^{2(N-1)}&\cdots & w_{N-1}^{(N-1)(N-1)}
+\end{pmatrix}
+$$
+
++ $X = (X[0],X[1],...,X[N-1])' = \frac1N F x$
++ 注意到$FF^{H} = N I_{NN}$,从而**IDFT**也不难得到.
+
+##### (3) FFT
+
+假设$N = p^{m}$其中$p$是个素数,特别地,对于$p = 2$的情况:
+
+按照模$2$的余数,将$F = (f_0,f_1,...,f_{N-1})$的列分为两类:
+
++ $\tilde{F} = FP = (f_0,f_2,...,f_{N-2},f_1,f_3,...,f_{N-1})$其中$P$为排列矩阵.
++ 将$\tilde{F}$分为四块,$\tilde{F} = \begin{pmatrix} F_{1} & F_2\\ F_3 &F_4 \end{pmatrix}$,每一块的大小均为$\frac N2 \times \frac{N}{2}$
++ 注意到$w_{N-1}^{N} = 1,\text{ yields } F_3 = F_1$
++ $F_2 = \Omega F_1$,其中$\Omega = \text{diag}\{1,w_{N-1}^1,\cdots,w_{N-1}^{N/2}\}$
++ $F_4 = \Omega_*F_3 $,其中$\Omega_* = \text{diag}\{w_{N-1}^{N/2+1},w_{N-1}^{N/2+2},\cdots,w_{N-1}^{N-1}\} = -\Omega$
+
+$Fx = FPPx = \tilde{F}\tilde{x} = \begin{pmatrix} I & \Omega\\ I & -\Omega \end{pmatrix}\begin{pmatrix} F_1x[0:2:end] \\ F_1x[1:2:end]  \end{pmatrix}$
+
+##### (4) DFT中的w
+
+对于一段长度为$T$s的音频,采样率为$f_s$,此时得到了向量的长度为$N = T\cdot f_s$
+
+此时,傅里叶变换中对应的$w$应该是什么?
+
+对于信号:
+
+| $t/\frac{1}{f_s}$ |  $0$   |  $1$   | $\cdots$ |  $N-1$   |
+| :---------------: | :----: | :----: | :------: | :------: |
+|      $f(t)$       | $x[0]$ | $x[1]$ | $\cdots$ | $x[N-1]$ |
+
+经过FFT之后得到:
+
+| $F(w)$ | $X[0]$ | $X[1]$ | $\cdots$ | $X[N-1]$ |
+| :----: | :----: | :----: | :------: | :------: |
+
++ 以$t_*$表示单位为$s$的时间,从而$ t = t_*/f_s$
++ $x = \sum_k X[k]e_k$,其中$e_k$是$e^{i\frac{2\pi}{N}k}$生成的,
+
+$$
+e^{i\frac{2\pi}{N}k t_*} =e^{i\frac{2\pi}{N}kf_s \cdot t}
+$$
+
++ 即$w_k = \frac{2\pi}{N}f_s k = \frac{2\pi}{T}k$
+
+#### ii. Table
+
+##### (1) Table 1
+
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231201125248157.png" alt="image-20231201125248157" style="zoom:80%;" />
+
+##### (2) Table 2
+
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231201125420334.png" alt="image-20231201125420334" style="zoom:80%;" />
+
+##### (3) Table 3
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223705348.png" alt="image-20231130223705348" style="zoom:80%;" />
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223746248.png" alt="image-20231130223746248" style="zoom:80%;" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### iii. 管波波速
 
 + 我们使用以下的公式计算管波的速度:
 
@@ -472,12 +563,5 @@ $$
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120140115941.png" alt="image-20231120140115941" style="zoom:80%;" />
 
-###### Example
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120135142828.png" alt="image-20231120135142828" style="zoom:80%;" />
 
-#### iii. Algorithm
-
-我们根据以下参数来选择需要的模型,具体的算法步骤参考1.Simplified Model,其中的 $L$ 是所考虑的最大频率与信号“频率”(持续时间的倒数)的比率,$\xi$表示damping ratio.
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119163700365.png" alt="image-20231119163700365" style="zoom:80%;" />
