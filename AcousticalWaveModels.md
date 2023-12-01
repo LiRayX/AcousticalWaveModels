@@ -22,14 +22,14 @@ Ref : **Acoustical wave propagation in buried water filled pipes(2005)**.
 
 #### ii. Mathematical preliminaries and application
 
-##### (1)Laplacian in cyclindrical coordinates
+##### (1)Laplacian in cylindrical coordinates
 
 圆柱坐标系下的拉普拉斯算子:
 $$
 \nabla^2 f = \frac {\part^2 f}{\part r^2}+\frac 1 r\frac{\part f}{\part r}+\frac{1}{r^2}\frac{\part^2 f}{\part \theta^2}+\frac{\part^2f}{\part z^2}
 $$
 
-上式只需利用chain rule即可,可以在任何一本数学分析/微积分的教材中找到,我们将在 wave equation 和 Helmholtz equation中多次使用它.
+~~上式只需利用chain rule即可,可以在任何一本数学分析/微积分的教材中找到,我们将在 wave equation 和 Helmholtz equation中多次使用它.~~[补充一下证明过程](#iii.-Laplacian)
 
 ##### (2)Bessel function
 
@@ -67,11 +67,11 @@ $$
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120095943848.png" alt="image-20231120095943848" style="zoom: 67%;" />
 
-以上的PDE的解为:
+以上的[PDE的解](#iv.-Solution of the Wave Equation  in Cylindrical Coordinates)为:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118124625632.png" alt="image-20231118124625632" style="zoom:80%;" />
 
-根据物理模型的假设:***波从源向外移动，并且在靠近源的地方具有有限的强度***,解化简为:
+根据物理模型的假设:***波从波源向外移动，并且在靠近波源的地方具有有限的强度***,解化简为:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118125759356.png" alt="image-20231118125759356" style="zoom:80%;" />
 
@@ -87,7 +87,7 @@ $$
 
 以上的分析告诉了我们解具有的形式,现在考虑添加载荷项之后的方程的解.
 
-+ 以$S(r,\theta,k_z,w)$表示源的强度,并利用Fourier-Bessel级数(Fourier级数和Bessel级数的张量)展开:
++ 以$S(r,\theta,k_z,w)$表示波源的强度,并利用Fourier-Bessel级数(Fourier级数和Bessel级数的张量)展开:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231118131556668.png" alt="image-20231118131556668" style="zoom:80%;" />
 
@@ -147,11 +147,11 @@ $$
 
 ###### a. off-center point source
 
-+ 假设源偏离中心的距离为$a$,如下图所示:
++ 假设波源偏离中心的距离为$a$,如下图所示:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120102630687.png" alt="image-20231120102630687" style="zoom:80%;" />
 
-+ 源的强度函数表达为:
++ 波源的强度函数表达为:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120102543877.png" alt="image-20231120102543877" style="zoom:80%;" />
 
@@ -159,7 +159,7 @@ $$
 
 ​	以上的表达式是为了说明我们在某个点发出了信号.
 
-+ 源的强度满足以下表达式:
++ 波源的强度满足以下表达式:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120103502107.png" alt="image-20231120103502107" style="zoom:80%;" />
 
@@ -175,7 +175,7 @@ $$
 
 ###### b. center point source
 
-+ $a=0$时,源的强度函数表达为:
++ $a=0$时,波源的强度函数表达为:
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120103856713.png" alt="image-20231120103856713" style="zoom:80%;" />
 
@@ -203,9 +203,11 @@ $$
 
 ###### a. EWM数学原理
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119140326445.png" alt="image-20231119140326445" style="zoom:50%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119140326445.png" alt="image-20231119140326445" style="zoom:80%;" />
 
 ###### b. EWM流程图
+
+图中的$w$参考[如何计算$w$](#(4)-w-in-DFT)
 
 ![image-20231119124640936](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119124640936.png)
 
@@ -222,7 +224,7 @@ $$
 + Do the inverse FFT
 + Multiply the resulting displacement by a rising exponential window with the same parameter $\eta$ to get the actual response
 
-$EWM:\text{force function }f(t)\stackrel{FFT}{\longrightarrow}F(w)\stackrel{FEW}{\longrightarrow}F(\overline{w})\xrightarrow[multiply]{calculate H(w)}\phi^*(r,\theta,z,\overline{w})\stackrel{IFFT}{\longrightarrow}\phi^*(r,\theta,z,t)\stackrel{REW}{\longrightarrow}\phi(r,\theta,z,t)$
+$EWM:\text{force function }f(t)\stackrel{FEW}{\longrightarrow}e^{-\eta t}f(t)\stackrel{FFT}{\longrightarrow}F(\overline{w})\xrightarrow[multiply]{calculate H(w)}\phi^*(r,\theta,z,\overline{w})\stackrel{IFFT}{\longrightarrow}\phi^*(r,\theta,z,t)\stackrel{REW}{\longrightarrow}\phi(r,\theta,z,t)$
 
 ***Two. Frequency domain analysis by the exponential window method and SGBEM for elastodynamics***
 
@@ -240,7 +242,7 @@ $EWM:\text{force function }f(t)\stackrel{FFT}{\longrightarrow}F(w)\stackrel{FEW}
 7. 对$X(\overline{w})$执行IFFT,得到scaled time response:
    + $\hat{X}(t) = \frac 1{2\pi}\int_{-\infty}^{+\infty}X(\overline{w})e^{i\overline{w}t}dw$
 8. 真正的时间响应为$X(t) =e^{\eta t}\hat{X}(t)$,时间分辨率为$\Delta t = T_f/N$;
-9. 如果计算出的$\Delta t$不能很好地指示time-history曲线的形状,可以考虑进行插值(**Ref**:***Brigham EO (1988) The fast Fourier transform and its applications. Prentice Hall, New Jersey***).
+9. 如果计算出的$\Delta t$不能很好地指示time-history曲线的形状,可以考虑进行插值(**Ref**: ***Brigham EO (1988) The fast Fourier transform and its applications. Prentice Hall, New Jersey***).
 
 + 以上的流程中,$3,4$中的SGBEM数值技术适合 $G(\overline{w})$ 是动态应力强度因子 (DSIF) 或动态T应力等裂缝参数的scaled frequency response.
   + *This numerical technique is particularly suitable if  $G(\overline{w})$ is the scaled frequency response for fracture parameters such as the dynamic stress intensity factors (DSIFs) or the dynamic T -stress*
@@ -299,7 +301,7 @@ After these brief notes on the EWM application the layout of the numerical code 
 
 #### i. Main idea
 
-+ 考虑一个由$N_l-1$个任意厚度的同心圆柱层组成的系统，我们从内到外对其$N_l$个界面进行编号.可选择无限大的外部区域可以围绕这些层.将假定每层中的材料特性与方位角$\theta$无关并且在每个圆柱形层内是均匀的。
++ 考虑一个由$N - 1$个任意厚度的同心圆柱层组成的系统，我们从外到内对这$N$个界面进行编号.可选择无限大的外部区域可以围绕这些层.将假定每层中的材料特性与方位角$\theta$无关并且在每个圆柱形层内是均匀的。
 
 #### ii. Mathematical preliminaries
 
@@ -371,7 +373,7 @@ $$
 $$
 r_N(s_N-s^*) = K_{core}(u_N - u ^*),\text{with} \: K_{core} = r_NF_N(H_N)^{-1}
 $$
-此外,由于外部区域没有源,因此齐次参考问题的应力满足平衡条件
+此外,由于外部区域没有波源,因此齐次参考问题的应力满足平衡条件
 $$
 -r_Ns^* = K_{ext}u^*\quad K_{ext} = -r_N F_N^{(2)}(H_N^{(2)})^{-1}
 $$
@@ -407,7 +409,7 @@ $$
 
 现在,只需要求出$u^*$即可.
 
-以上的刚度矩阵,见**Table 1 Table 2**
+以上的刚度矩阵,见[Table 1](#(1)-Table-1) [Table 2](#(2)-Table-2)
 
 ###### b. step 2
 
@@ -419,7 +421,7 @@ Let $g_j (r, r') = g_j (r, r', t)$ or $g_j (r, r') = g_j (r, r', w)$ be the Gree
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223608507.png" alt="image-20231130223608507" style="zoom:80%;" />
 
-以上涉及到的字母,参考**Table 3**
+以上涉及到的字母,参考[Table 3](#(3)-Table-3)
 
 其中,$g_{ij}$表示$j$方向的单位载荷对于$i$方向的影响.
 
@@ -449,7 +451,7 @@ $ u =\sum \bold{g_x}$
 
 ***为了方便,以下所有的下标从零开始.***
 
-##### (1) 正交基
+##### (1) Orthogonal basis
 
 对于内积空间$(\C^N,(\cdot,\cdot))$,其中内积为标准内积$(x,y) = x'\overline{y} = \sum_{j=0}^{N-1}x_j\overline{y_j}$,
 
@@ -497,7 +499,7 @@ $$
 
 $Fx = FPPx = \tilde{F}\tilde{x} = \begin{pmatrix} I & \Omega\\ I & -\Omega \end{pmatrix}\begin{pmatrix} F_1x[0:2:end] \\ F_1x[1:2:end]  \end{pmatrix}$
 
-##### (4) DFT中的w
+##### (4) w in DFT
 
 对于一段长度为$T$s的音频,采样率为$f_s$,此时得到了向量的长度为$N = T\cdot f_s$
 
@@ -539,7 +541,61 @@ $$
 
 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130223746248.png" alt="image-20231130223746248" style="zoom:80%;" />
 
-#### iii. 管波波速
+#### iii. Laplacian
+
+考虑笛卡尔坐标下的切向量场的自然基底$\{\frac{\partial }{\partial x},\frac{\partial }{\partial y},\frac{\partial }{\partial z}\}$.自然标架$\bold{i},\bold{j},\bold{k}$
+
+柱坐标系下:$\{\frac{\partial }{\partial r},\frac{\partial }{\partial \theta},\frac{\partial }{\partial z}\}$.幺正标架$e_r,e_{\theta},e_z$
+
+坐标变换:$\left\{\begin{aligned}x &= r\cos\theta \\ y &= r\sin\theta \\z&=z \end{aligned}\right.$
+
+注意到:
+$$
+\begin{aligned}
+\frac{\partial }{\partial r} & = \cos\theta\frac{\partial }{\partial x} + \sin\theta\frac{\partial }{\partial y}\\
+\frac{\partial }{\partial \theta} & = -r\sin\theta\frac{\partial }{\partial x} + r\cos\theta\frac{\partial }{\partial y}
+\end{aligned}
+$$
+我们有:
+$$
+\begin{aligned}
+e_r & = \cos\theta\bold{i} + \sin\theta\bold{j}\\
+e_{\theta} & = -\sin\theta\bold{i} + \cos\theta\bold{j}\\
+e_z &= \bold{k} 
+\end{aligned}
+$$
+从而:
+$$
+\frac{\partial e_r}{\partial \theta} = e_{\theta},\; \frac{\partial e_{\theta}}{\partial \theta} = -e_r
+$$
+可以验证:
+$$
+\nabla = (\frac{\partial }{\partial x},\frac{\partial }{\partial y},\frac{\partial }{\partial z})' 
+	   = \bold{i}\frac{\partial }{\partial x}+\bold{j}\frac{\partial }{\partial y}+\bold{k}\frac{\partial }{\partial z}
+	   = e_r\frac{\partial }{\partial r} + \frac{1}{r}e_{\theta}\frac{\partial }{\partial \theta} + e_z\frac{\partial }{\partial z}
+$$
+进一步,得到:
+$$
+\begin{aligned}
+\Delta = \nabla \cdot \nabla &= (e_r\frac{\partial }{\partial r} + \frac{1}{r}e_{\theta}\frac{\partial }{\partial \theta} + e_z\frac{\partial }{\partial z})^2\\
+&= \frac{\partial^2 }{\partial r^2}+\frac{1}{r}e_{\theta}\frac{\partial }{\partial \theta}(e_r\frac{\partial }{\partial r}) +e_z\frac{\partial }{\partial z}(e_r\frac{\partial }{\partial r})\\
+&\quad\; e_r\frac{\partial }{\partial r}(e_{\theta}\frac1r\frac{\partial }{\partial \theta})+\frac{1}{r^2}\frac{\partial^2 }{\partial \theta^2}+ e_z\frac{\partial }{\partial z}(e_{\theta}\frac1r\frac{\partial }{\partial \theta})\\
+&\quad\; e_r\frac{\partial }{\partial r}(e_z\frac{\partial }{\partial z})+\frac1re_\theta\frac{\partial }{\partial \theta}(e_z\frac{\partial }{\partial z})+\frac{\partial^2 }{\partial z^2}\\
+&=\frac{\partial^2 }{\partial r^2}+\frac{1}{r}e_\theta\frac{\partial e_r}{\partial \theta}\frac{\partial }{\partial r} + \frac{1}{r^2}\frac{\partial^2 }{\partial \theta^2}+\frac{\partial^2 }{\partial z^2}\\
+&=\frac{\partial^2 }{\partial r^2}+\frac{1}{r}\frac{\partial }{\partial r} + \frac{1}{r^2}\frac{\partial^2 }{\partial \theta^2}+\frac{\partial^2 }{\partial z^2}
+\end{aligned}
+$$
+其中,第三个等号后只保留了四项是因为$\frac{\partial e_k}{\partial k} = 0,(k=r,z),\frac{\partial e_z}{\partial k} = 0,(k=r,\theta)$.
+
+#### iv. Solution of the Wave Equation  in Cylindrical Coordinates
+
+***The Foundations of Acoustics __ The Wave Equation in -- Skudrzyk, Eugen***
+
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231201194815207.png" alt="image-20231201194815207" style="zoom:80%;" />
+
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231201194934234.png" alt="image-20231201194934234" style="zoom:100%;" />
+
+#### v. Wave speed of tube
 
 + 我们使用以下的公式计算管波的速度:
 
