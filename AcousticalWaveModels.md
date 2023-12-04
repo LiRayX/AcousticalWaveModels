@@ -62,7 +62,7 @@ $$
 ###### a. The form of solution
 
 $$
-\nabla^2 \phi = \frac{1}{c^2}\frac{\part^2\phi}{\part t^2}
+\nabla^2 \phi = \frac{1}{c^2}\frac{\partial ^2\phi}{\partial t^2}
 $$
 
 其中$c$是声速,$\phi$表示***abstract scalar field***,可以理解为***Velocity Potential***,
@@ -275,7 +275,7 @@ $$
 
 图中的$w$参考[如何计算$w$](#(4)-w-in-DFT)
 
-![image-20231119124640936](.\AcousticalWaveModels.assets\image-20231119124640936.png)
+<img src=".\AcousticalWaveModels.assets\image-20231119124640936.png" alt="image-20231119160142473" style="zoom: 100%;" />
 
 
 
@@ -351,15 +351,13 @@ After these brief notes on the EWM application the layout of the numerical code 
 
 以5ms的脉冲为例
 
-<img src=".\AcousticalWaveModels.assets\image-20231119160142473.png" alt="image-20231119160142473" style="zoom: 80%;" />
-
-![templatepulse](.\AcousticalWaveModels.assets\templatepulse.png)
+<img src=".\AcousticalWaveModels.assets\templatepulse.png" alt="image-20231119160142473" style="zoom: 100%;" />
 
 + **The theoretical time it takes for sound to travel z is $0.06666666666666667$(s) and it is already marked on the diagram with a red dotted line**
 
-![pressure_response](.\AcousticalWaveModels.assets\pressure_response.png)
+<img src=".\AcousticalWaveModels.assets\pressure_response.png" alt="image-20231119160142473" style="zoom: 100%;" />
 
-![FrequencyDomain](.\AcousticalWaveModels.assets\FrequencyDomain.png)
+<img src=".\AcousticalWaveModels.assets\FrequencyDomain.png" alt="image-20231119160142473" style="zoom: 100%;" />
 
 ### 2.Layered Models
 
