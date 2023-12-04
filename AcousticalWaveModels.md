@@ -79,7 +79,7 @@ $$
 
 k_a=\sqrt{k_p^2-k_z^2}
 $$
-根据物理模型的假设:***波从波源向外移动，并且在靠近波源的地方具有有限的强度***,解化简为:
+根据物理模型的假设:波从波源向外移动$ \Rightarrow c_5 = 0$，并且在靠近波源的地方具有有限的强度$\Rightarrow c_4 = 0,\text{for } Y_n(x)\text{ explodes at $x=0$}$,解化简为:
 $$
 \phi(r, \theta, z)=\left(c_1 \cos (n \theta)+c_2 \sin (n \theta)\right) \cdot J_n\left(k_a r\right) \cdot e^{-i k_z z}
 $$
@@ -183,7 +183,7 @@ $$
 
 + 假设波源偏离中心的距离为$a$,如下图所示:
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120102630687.png" alt="image-20231120102630687" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231120102630687.png" alt="image-20231120102630687" style="zoom:80%;" />
 
 + 波源的强度函数表达为:
 
@@ -275,7 +275,7 @@ $$
 
 图中的$w$参考[如何计算$w$](#(4)-w-in-DFT)
 
-![image-20231119124640936](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119124640936.png)
+![image-20231119124640936](.\AcousticalWaveModels.assets\image-20231119124640936.png)
 
 
 
@@ -351,7 +351,15 @@ After these brief notes on the EWM application the layout of the numerical code 
 
 以5ms的脉冲为例
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119160142473.png" alt="image-20231119160142473" style="zoom: 80%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231119160142473.png" alt="image-20231119160142473" style="zoom: 80%;" />
+
+![templatepulse](.\AcousticalWaveModels.assets\templatepulse.png)
+
++ **The theoretical time it takes for sound to travel z is $0.06666666666666667$(s) and it is already marked on the diagram with a red dotted line**
+
+![pressure_response](.\AcousticalWaveModels.assets\pressure_response.png)
+
+![FrequencyDomain](.\AcousticalWaveModels.assets\FrequencyDomain.png)
 
 ### 2.Layered Models
 
@@ -363,7 +371,7 @@ After these brief notes on the EWM application the layout of the numerical code 
 
 我们所需要的流体-管道-土壤模型(下图,Page 64 of thesis),属于case 2: Unbounded external region.
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119204312007.png" alt="image-20231119204312007" style="zoom:50%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231119204312007.png" alt="image-20231119204312007" style="zoom:50%;" />
 
 #### i. Main idea
 
@@ -507,8 +515,7 @@ u_N
 \end{pmatrix}
 $$
 
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231130220457504.png" alt="image-20231130220457504" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231130220457504.png" alt="image-20231130220457504" style="zoom:80%;" />
 
 
 
@@ -589,10 +596,9 @@ $$
 The radial, tangential, and axial components of the Green's functions are then
 $$
 \begin{aligned}
-& g_{r x}=u(\cos \theta), \quad g_{r y}=u(\sin \theta), \quad g_{r z}=U \\
-& g_{\theta x}=v(-\sin \theta), \quad g_{\theta y}=v(\cos \theta), \quad g_{\theta z}=0 \\
-& g_{z x}=w(\cos \theta), \quad g_{z y}=w(\sin \theta), \quad g_{z z}=W \\
-&
+&g_{r x}=u(\cos \theta),\quad g_{r y}=u(\sin \theta), \;g_{r z}=U \\
+&g_{\theta x}=v(-\sin \theta),\;g_{\theta y}=v(\cos \theta), \;g_{\theta z}=0 \\
+&g_{z x}=w(\cos \theta), \quad g_{z y}=w(\sin \theta),\;g_{z z}=W \\
 \end{aligned}
 $$
 以上涉及到的字母,参考[Table 3](#(3)-Table-3)
@@ -615,21 +621,13 @@ $ u =\sum \bold{g_x}$
 
 ###### c . Result
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231120135142828.png" alt="image-20231120135142828" style="zoom:80%;" />
-
-![templatepulse](D:\AcousticalWaveModels\output\templatepulse.png)
-
-+ **The theoretical time it takes for sound to travel z is $0.06666666666666667$(s) and it is already marked on the diagram with a red dotted line**
-
-![pressure_response](D:\AcousticalWaveModels\output\pressure_response.png)
-
-![FrequencyDomain](D:\AcousticalWaveModels\output\FrequencyDomain.png)
+<img src=".\AcousticalWaveModels.assets\image-20231120135142828.png" alt="image-20231120135142828" style="zoom:80%;" />
 
 #### iii. Algorithm
 
 我们根据以下参数来选择需要的模型,具体的算法步骤参考1.Simplified Model,其中的 $L$ 是所考虑的最大频率与信号“频率”(持续时间的倒数)的比率,$\xi$表示damping ratio.
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231119163700365.png" alt="image-20231119163700365" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231119163700365.png" alt="image-20231119163700365" style="zoom:80%;" />
 
 ### 3. Appendix
 
@@ -722,11 +720,11 @@ $$
 
 ##### (1) Table 1
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231201125248157.png" alt="image-20231201125248157" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231201125248157.png" alt="image-20231201125248157" style="zoom:80%;" />
 
 ##### (2) Table 2
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20231201125420334.png" alt="image-20231201125420334" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\image-20231201125420334.png" alt="image-20231201125420334" style="zoom:80%;" />
 
 ##### (3) Table 3
 
@@ -818,9 +816,9 @@ $$
 <embed id="pdfPlayer" src="D:\AcousticalWaveModels\Main part of the Foundations of Acoustics.pdf" type="application/pdf" width="100%" height="1200" >
 ```
 
-<img src="C:\Users\Dell\Desktop\声音传输模型文献1.0\Main part of the Foundations of Acoustics-1.png" alt="Main part of the Foundations of Acoustics-1" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\Main part of the Foundations of Acoustics-1.png" alt="Main part of the Foundations of Acoustics-1" style="zoom:80%;" />
 
-<img src="C:\Users\Dell\Desktop\声音传输模型文献1.0\Main part of the Foundations of Acoustics-2.png" alt="Main part of the Foundations of Acoustics-1" style="zoom:80%;" />
+<img src=".\AcousticalWaveModels.assets\Main part of the Foundations of Acoustics-2.png" alt="Main part of the Foundations of Acoustics-1" style="zoom:80%;" />
 
 #### v. Wave speed of tube
 
