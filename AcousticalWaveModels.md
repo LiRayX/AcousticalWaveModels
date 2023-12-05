@@ -1,8 +1,6 @@
-
-
-
-
 # Acoustical Wave Models
+
+[toc]
 
 ## Ⅰ. Simplified Model and Layered Models
 
@@ -16,13 +14,13 @@ Ref : **Acoustical wave propagation in buried water filled pipes(2005)**.
 
 #### i. Main idea
 
-+ The pipe will be considered to be much stiffer than the water it contains, in which case the fluid is surrounded by a cylindrical boundary that allows no motions in the radial direction.(管道将被认为比其所容纳的水硬得多，在这种情况下，流体被圆柱形边界包围，不允许沿径向方向运动)
++ The pipe will be considered to be much stiffer than the water it contains, in which case the fluid is surrounded by a cylindrical boundary that allows no motions in the radial direction.
 
 *Why we need this simplified model?*
 
-*如果波可以穿过不止一种介质，特别是在固相和液相之间存在相互作用的情况下，在圆柱坐标系中严格制定声音传播是一个相当困难的问题*.(当然这种困难的问题在后面也有所讨论)
+​	如果波可以穿过不止一种介质,特别是在固相和液相之间存在相互作用的情况下,在圆柱坐标系中严格计算声音传播是一个相当困难的问题.(当然这种困难的问题在后面也有所讨论)
 
-+ P波(primary wave or pressure wave,又称纵波 longitudinal wave, 疏密波 rarefaction waves),是指在传播介质中质点的振动方向与波的传播方向平行的一类波.
++ P波(primary wave or pressure wave,又称压缩波 compressional wave,纵波 longitudinal wave, 疏密波 rarefaction waves),是指在传播介质中质点的振动方向与波的传播方向平行的一类波.
 + S波(secondary wave or shear wave,又称横波 transverse wave, 高低波 ), 横波是垂直于波的前进方向振动的波.
 
 #### ii. Mathematical preliminaries and application
@@ -48,12 +46,43 @@ $$
 
 有三类贝塞尔函数,根据我们的需要进行选取即可.
 
++ Bessel函数的渐进性:
+
+  当 $x \rightarrow+\infty$时,
+
+$$
+J_\alpha(x) \sim \sqrt{\frac{2}{\pi x}} \cos \left(x-\frac{\alpha \pi}{2}-\frac{\pi}{4}\right),|\arg x|<\pi
+$$
+
+​		当 $x \rightarrow 0$ 时,	
+$$
+J_\alpha(x) \sim \frac{1}{\Gamma(\alpha+1)}\left(\frac{x}{2}\right)^\alpha+O\left(x^{\alpha+2}\right)
+$$
+
++ Bessel函数导数的渐进性:
+
+​		函数 $J_\alpha 、 \gamma_\alpha 、 H_\alpha{ }^{(1)}$ 和 $H_\alpha{ }^{(2)}$ 均满足递推关系:
+$$
+\begin{aligned}
+& Z_{\alpha-1}(x)+Z_{\alpha+1}(x)=\frac{2 \alpha}{x} Z_\alpha(x) \\
+& Z_{\alpha-1}(x)-Z_{\alpha+1}(x)=2 \frac{d Z_\alpha}{d x}
+\end{aligned}
+$$
+​		从而:
+
+​		
+$$
+J_\alpha'(x) \rightarrow 0,\text{ as } x\rightarrow +\infty 
+$$
+
+
 + Bessel函数的正交性:
 
 由于贝塞尔方程对应的作用算符除以$x$后便是一个**自伴算子**(self-adjoint operator),所以它的解在适当边界条件下须满足正交性关系.特别地,有：
 $$
 \int_0^1 x J_\alpha\left(x u_{\alpha, m}\right) J_\alpha\left(x u_{\alpha, n}\right) d x=\frac{\delta_{m, n}}{2} J_{\alpha+1}\left(u_{\alpha, m}\right)^2
 $$
+
 
 ##### (3)Acoustic wave equation
 
@@ -67,7 +96,7 @@ $$
 
 其中$c$是声速,$\phi$表示***abstract scalar field***,可以理解为***Velocity Potential***,
 
-得到$\phi$后,$\bold{u} = \nabla\phi,p = -\rho \frac{\part\phi}{\part t} $.
+得到$\phi$后,$\bold{u} = \nabla\phi,p = -\rho \frac{\partial \phi}{\partial t} $.
 
 利用(1)Laplacian in cyclindrical coordinates,得到:
 $$
@@ -79,9 +108,9 @@ $$
 
 k_a=\sqrt{k_p^2-k_z^2}
 $$
-根据物理模型的假设:波从波源向外移动$ \Rightarrow c_5 = 0$，并且在靠近波源的地方具有有限的强度$\Rightarrow c_4 = 0,\text{for } Y_n(x)\text{ explodes at $x=0$}$,解化简为:
+根据物理模型的假设:波从波源向外移动$ \Rightarrow c_6 = 0$，并且在靠近波源的地方具有有限的强度$\Rightarrow c_4 = 0,\text{for } Y_n(x)\text{ explodes at $x=0$}$,解化简为:
 $$
-\phi(r, \theta, z)=\left(c_1 \cos (n \theta)+c_2 \sin (n \theta)\right) \cdot J_n\left(k_a r\right) \cdot e^{-i k_z z}
+\phi(r, \theta, z)=\left(c_1 \cos (n \theta)+c_2 \sin (n \theta)\right) \cdot J_n\left(k_a r\right) \cdot e^{i k_z z}
 $$
 根据Simplified Model中的假设,边界条件:
 $$
@@ -613,13 +642,11 @@ $$
 \mathbf{g}_y=u\left(r, z, z^{\prime}\right) \sin \theta \hat{\mathbf{r}}+v\left(r, z, z^{\prime}\right) \cos \theta \hat{\mathbf{t}}+w\left(r, z, z^{\prime}\right) \sin \theta \hat{\mathbf{k}} & \text { Horizontal y load }
 \end{array}
 $$
-$ u =\sum \bold{g_x}$
-
-声波在液体中只有P波于是只需要考虑$\bold{g_z}$即可.
+$ u =\sum \bold{g_x}$.
 
 ###### c . Result
 
-<img src=".\AcousticalWaveModels.assets\image-20231120135142828.png" alt="image-20231120135142828" style="zoom:80%;" />
+<img src="./AcousticalWaveModels.assets/image-20231205133955040.png" alt="image-20231205133955040" style="zoom:80%;" />
 
 #### iii. Algorithm
 
@@ -809,10 +836,6 @@ $$
 #### iv. Solution of the Wave Equation  in Cylindrical Coordinates
 
 **The Foundations of Acoustics || The Wave Equation in Cylindrical Coordinates and Its Applications **
-
-```html
-<embed id="pdfPlayer" src="D:\AcousticalWaveModels\Main part of the Foundations of Acoustics.pdf" type="application/pdf" width="100%" height="1200" >
-```
 
 <img src=".\AcousticalWaveModels.assets\Main part of the Foundations of Acoustics-1.png" alt="Main part of the Foundations of Acoustics-1" style="zoom:80%;" />
 
