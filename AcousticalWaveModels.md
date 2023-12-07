@@ -21,7 +21,7 @@ Ref : **Acoustical wave propagation in buried water filled pipes(2005)**.
 ​	如果波可以穿过不止一种介质,特别是在固相和液相之间存在相互作用的情况下,在圆柱坐标系中严格计算声音传播是一个相当困难的问题.(当然这种困难的问题在后面也有所讨论)
 
 + P波(primary wave or pressure wave,又称压缩波 compressional wave,纵波 longitudinal wave, 疏密波 rarefaction waves),是指在传播介质中质点的振动方向与波的传播方向平行的一类波.
-+ S波(secondary wave or shear wave,又称横波 transverse wave, 高低波 ), 横波是垂直于波的前进方向振动的波.
++ S波(secondary wave or shear wave,又称横波 transverse wave, 高低波), 横波是垂直于波的前进方向振动的波.
 
 #### ii. Mathematical preliminaries and application
 
@@ -83,6 +83,8 @@ $$
 \int_0^1 x J_\alpha\left(x u_{\alpha, m}\right) J_\alpha\left(x u_{\alpha, n}\right) d x=\frac{\delta_{m, n}}{2} J_{\alpha+1}\left(u_{\alpha, m}\right)^2
 $$
 
+其中,$\alpha > -1,u_{\alpha,n}$表示$J_{\alpha}$的第$n$级零点.
+
 
 ##### (3)Acoustic wave equation
 
@@ -94,7 +96,7 @@ $$
 \nabla^2 \phi = \frac{1}{c^2}\frac{\partial ^2\phi}{\partial t^2}
 $$
 
-其中$c$是声速,$\phi$表示***abstract scalar field***,可以理解为***Velocity Potential***,
+其中$c$是声速,$\phi$表示***abstract scalar field***,
 
 得到$\phi$后,$\bold{u} = \nabla\phi,p = -\rho \frac{\partial \phi}{\partial t} $.
 
@@ -108,9 +110,9 @@ $$
 
 k_a=\sqrt{k_p^2-k_z^2}
 $$
-根据物理模型的假设:波从波源向外移动$ \Rightarrow c_6 = 0$，并且在靠近波源的地方具有有限的强度$\Rightarrow c_4 = 0,\text{for } Y_n(x)\text{ explodes at $x=0$}$,解化简为:
+根据物理模型的假设:波从波源向外移动$ \Rightarrow c_5 = 0$，并且在靠近波源的地方具有有限的强度$\Rightarrow c_4 = 0,\text{for } Y_n(x)\text{ explodes at $x=0$}$,解化简为:
 $$
-\phi(r, \theta, z)=\left(c_1 \cos (n \theta)+c_2 \sin (n \theta)\right) \cdot J_n\left(k_a r\right) \cdot e^{i k_z z}
+\phi(r, \theta, z)=\left(c_1 \cos (n \theta)+c_2 \sin (n \theta)\right) \cdot J_n\left(k_a r\right) \cdot e^{-i k_z z}
 $$
 根据Simplified Model中的假设,边界条件:
 $$
@@ -187,7 +189,7 @@ A_{n j}=\frac{-a_{n j}}{\left(k_z-\sqrt{k_0^2-k_{n j}^2}\right)\left(k_z+\sqrt{k
 \end{aligned}
 $$
 
-+ 以上的$A_{nj},B_{nj}$是$\phi$中所有包含轴向波数$k_z$的项,进行Fourier逆变换:
++ 以上的$A_{nj},B_{nj}$是$\phi$中所有包含轴向波数$k_z$的项(注意: $\phi$的表达式中的项为$e^{-ik_zz}),$
 
 $$
 I_j=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \frac{e^{-\mathrm{i} k_z z} d k_z}{\left(k_z-\sqrt{k_0^2-k_{n j}^2}\right)\left(k_z+\sqrt{k_0^2-k_{n j}^2}\right)}
@@ -648,6 +650,8 @@ $ u =\sum \bold{g_x}$.
 
 <img src="./AcousticalWaveModels.assets/image-20231205133955040.png" alt="image-20231205133955040" style="zoom:80%;" />
 
+<img src="./AcousticalWaveModels.assets/image-20231206200610080.png" alt="image-20231206200610080" style="zoom:80%;" />
+
 #### iii. Algorithm
 
 我们根据以下参数来选择需要的模型,具体的算法步骤参考1.Simplified Model,其中的 $L$ 是所考虑的最大频率与信号“频率”(持续时间的倒数)的比率,$\xi$表示damping ratio.
@@ -810,10 +814,12 @@ e_{\theta} & = -\sin\theta\bold{i} + \cos\theta\bold{j}\\
 e_z &= \bold{k} 
 \end{aligned}
 $$
-从而:
+从而,
 $$
 \frac{\partial e_r}{\partial \theta} = e_{\theta},\; \frac{\partial e_{\theta}}{\partial \theta} = -e_r
 $$
+并且其余的$\frac{\partial e_u}{\partial v} = 0$.
+
 可以验证:
 $$
 \nabla = (\frac{\partial }{\partial x},\frac{\partial }{\partial y},\frac{\partial }{\partial z})' 
@@ -831,7 +837,7 @@ $$
 &=\frac{\partial^2 }{\partial r^2}+\frac{1}{r}\frac{\partial }{\partial r} + \frac{1}{r^2}\frac{\partial^2 }{\partial \theta^2}+\frac{\partial^2 }{\partial z^2}
 \end{aligned}
 $$
-其中,第三个等号后只保留了四项是因为$\frac{\partial e_k}{\partial k} = 0,(k=r,z),\frac{\partial e_z}{\partial k} = 0,(k=r,\theta)$.
+其中,第三个等号后只保留了四项是因为$\frac{\partial e_u}{\partial u} = 0,(u=r,z),\frac{\partial e_z}{\partial u} = 0,(u=r,\theta)$.
 
 #### iv. Solution of the Wave Equation  in Cylindrical Coordinates
 
